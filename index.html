@@ -1,25 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
     <head>
-<meta charset="UTF-8">
-<title>Sommatoria
-</title>
-<script type="text/javascript">
-    function calcola(){
-        // acquisire il valore in ingresso
-        var incasso = parsefloat (document.getElementById("casella").value);
-        //incrementiamo la sommatoria
-        var somma= parsefloat (document.getElementById("totale").value);
-        //visualizziamo il totale parziale
-        document.getElementById("totale").value =somma.toFixed(2);
-        //svuotiamo ora la cassella dell'incasso per l'input di un un nuovo valore
-        document.getElementById("casella").value ="";
-    }
-</script>
-</head>
-<body>
-    <h2> sommatoria </h2>
-    <form id="somma">
+        <meta charset="UTF-8">
+        <title>Sommatoria</title>
+        <script type="text/javascript">
+            function calcola() {
+                // Acquisire il valore in ingresso
+                var incasso = parseFloat(document.getElementById("casella").value);
+                
+                // Se l'input non è un numero, non fare nulla
+                if (isNaN(incasso)) {
+                    alert("Inserisci un numero valido.");
+                    return;
+                }
+
+                // Incrementiamo la sommatoria
+                var somma = parseFloat(document.getElementById("totale").value) || 0;
+
+                // Sommiamo l'incasso alla somma
+                somma += incasso;
+
+                // Visualizziamo il totale parziale
+                document.getElementById("totale").value = somma.toFixed(2);
+
+                // Svuotiamo la casella dell'incasso per l'input di un nuovo valore
+                document.getElementById("casella").value = "";
+            }
+        </script>
+    </head>
+    <body>
+        <label for="casella">Incasso:</label>
+        <input type="text" id="casella" placeholder="Inserisci l'incasso">
+        <br>
+        <label for="totale">Totale:</label>
+        <input type="text" id="totale" value="0.00" readonly>
+        <br>
+        <button onclick="calcola()">Aggiungi Incasso</button>
+    </body>
+</html>
+
         <p>
             Incasso: <input type="number" id="casella">
             <input id="button1" type="button" value="Aggiungi" onclick="Calcola()">
